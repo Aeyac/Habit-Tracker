@@ -1,8 +1,8 @@
 
 
-export default function AddHabitButton({ habit, onAdd }) {
+// export default function AddHabitButton({ habit, onAdd }) {
 
-    return (
-        <button></button>
-    )
-}
+//     return (
+//         <button></button>
+//     )
+// }

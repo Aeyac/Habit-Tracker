@@ -1,17 +1,21 @@
-import { useState } from 'react';
-import HabitsPage from "./pages/HabitsPage";
-import DashboardPage from "./pages/DashboardPage";
+// App.jsx
+import { useState } from 'react'
+import HabitsPage from "./pages/HabitsPage"
 import './App.css'
-import { load } from "./utils/localStorage";
-
-
+import useHabits from './hooks/useHabits'
 
 function App() {
-  const habits = load("habits", []);
+  const { habits, create, remove, checkIn, edit } = useHabits()
 
   return (
     <>
-      <HabitsPage habit={habits}/>
+      <HabitsPage
+        habits={habits}
+        addHabit={create}
+        onCheckIn={checkIn}
+        onRemove={remove}
+        onEdit={edit}
+      />
     </>
   )
 }

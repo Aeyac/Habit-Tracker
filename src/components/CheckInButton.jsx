@@ -3,6 +3,6 @@
 export default function CheckInButoton({ isCompleted, onCheckIn }) {
 
     return (
-        <button onClick={() => onCheckIn(!isCompleted)}> {isCompleted ? "Done" : "Mark as Done"}</button>
+        isCompleted ? <p style={{ fontSize: "14px", color: "green", fontWeight: "bold" }} >Done</p> : <button onClick={onCheckIn}> Mark as Done</button>
     )
 }

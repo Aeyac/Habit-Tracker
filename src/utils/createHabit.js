@@ -1,15 +1,9 @@
-
-
-
-export default function createHabit(habit) {
+export function createHabit(name, category) {
     return {
-        id: habit.id,
-        name: habit.name,
-        category: habit.category,
-        pending: true,
-        completions: {
- 
-        },
-        added: Date.now()
+        id: crypto.randomUUID(),
+        name,
+        category,
+        completions: {},   // empty map — dates get added here on check-in
+        createdAt: Date.now(),
     }
 }

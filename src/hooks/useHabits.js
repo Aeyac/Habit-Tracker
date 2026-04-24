@@ -1,33 +1,40 @@
-import { load, save } from "../utils/localStorage";
-import { createHabit } from "../utils/createHabit";
-import { useCallback, useEffect } from "react";
+// hooks/useHabits.js
+import { useState, useCallback, useEffect } from "react"
+import { load, save } from "../utils/localStorage"
+import { createHabit } from "../utils/createHabit"
 
-export default function useHabit() {
-    const { habits, setHabits } = load("habits", []);
+export default function useHabits() {
+    const [habits, setHabits] = useState(() => load("habits", []))
 
     useEffect(() => {
-        if (habits < 1) {
-            return;
-        };
-        save("habits", habits);
+        save("habits", habits)
     }, [habits])
 
-
-    const create = useCallback((habit) => {
-        if (habit === null) return
-        setHabits([...habits, createHabit(habit)]);
+    const create = useCallback((name, category) => {
+        // console.log("create called with:", name, category)
+        setHabits([...habits, createHabit(name, category)])
     }, [habits])
 
     const remove = useCallback((id) => {
-        const tempHabits = habits.filter((habit) => {
-            if (habit.id !== id) return habit
-        });
-        setHabits([...habits, tempHabits]);
+        setHabits(habits.filter((habit) => habit.id !== id))
     }, [habits])
 
-    const edit = (id) => {
+    const checkIn = useCallback((id) => {
+        const today = new Date().toISOString().split("T")[0]
+        setHabits(habits.map((habit) =>
+            habit.id === id
+                ? { ...habit, completions: { ...habit.completions, [today]: true } }
+                : habit
+        ))
+    }, [habits])
 
-    }
+    const edit = useCallback((id, name) => {
+        setHabits(habits.map((habit) =>
+            habit.id === id
+                ? { ...habit, name: name }
+                : habit
+        ))
+    }, [habits])
 
-    return { create, remove, edit }
+    return { habits, create, remove, checkIn, edit }
 }
