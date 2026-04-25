@@ -1,6 +1,6 @@
 
 
-export default function EditHabitButton({ isEdit, onEdit, onEneableEdit }) {
+export default function EditHabitButton({ isEdit, onEdit, onEnableEdit }) {
 
     return (
         <div>
@@ -8,11 +8,11 @@ export default function EditHabitButton({ isEdit, onEdit, onEneableEdit }) {
 
             {isEdit ?
                 <>
-                    <button onClick={onEneableEdit}> Cancel </button>
+                    <button onClick={onEnableEdit}> Cancel </button>
                     <button onClick={onEdit}> Submit</button>
                 </>
                 :
-                <button onClick={onEneableEdit}> Edit</button>}
+                <button onClick={onEnableEdit}> Edit</button>}
         </div>
     )
 }

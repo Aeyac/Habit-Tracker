@@ -11,7 +11,6 @@ export default function useHabits() {
     }, [habits])
 
     const create = useCallback((name, category) => {
-        // console.log("create called with:", name, category)
         setHabits([...habits, createHabit(name, category)])
     }, [habits])
 

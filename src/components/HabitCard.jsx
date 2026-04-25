@@ -8,6 +8,11 @@ export default function HabitCard({ habit, onCheckIn, onRemove, onEdit }) {
     const isCompleted = habit.completions[today] === true
     const [isEdit, setIsEdit] = useState(false);
     const [editName, setEditName] = useState(habit.name)
+    const habitDate = new Date(habit.createdAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
 
     const handleCheckIn = () => {
         const confirmed = window.confirm(
@@ -34,8 +39,10 @@ export default function HabitCard({ habit, onCheckIn, onRemove, onEdit }) {
 
     return (
         <div>
-            <h3>{habit.name}</h3>
+            <p style={{fontSize: "24px", fontWeight: "bold"}}>  {habit.name}</p>
             <p>{habit.category}</p>
+            <p style={{ color: "white", fontSize: "12px" }} >{`Added at: ${habitDate}`}</p>
+
             <CheckInButton
                 isCompleted={isCompleted}
                 onCheckIn={handleCheckIn}
@@ -47,7 +54,7 @@ export default function HabitCard({ habit, onCheckIn, onRemove, onEdit }) {
                 <input onChange={(e) => setEditName(e.target.value)} placeholder="put the text here"></input>
             </>}
             {!isCompleted &&
-                <EditHabitButton isEdit={isEdit} onEdit={handleEdit} onEneableEdit={handleEnableEdit} />
+                <EditHabitButton isEdit={isEdit} onEdit={handleEdit} onEnableEdit={handleEnableEdit} />
             }
 
         </div>
