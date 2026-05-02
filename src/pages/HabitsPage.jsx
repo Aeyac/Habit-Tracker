@@ -4,7 +4,7 @@ import HabitCard from "../components/HabitCard"
 import HabitModal from "../components/HabitModal"
 import FilterBar from "../components/FilterBar"
 
-export default function HabitsPage({ habits, addHabit, onCheckIn, completed, onRemove, onEdit }) {
+export default function HabitsPage({ habits, onCreate, onCheckIn, completed, onRemove, onEdit }) {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [name, setName] = useState("")
     const [category, setCategory] = useState("")
@@ -12,7 +12,7 @@ export default function HabitsPage({ habits, addHabit, onCheckIn, completed, onR
 
     const handleSave = () => {
         if (!name.trim() || !category) return
-        addHabit(name, category)
+        onCreate(name, category)
         setName("")
         setCategory("")
         setIsModalOpen(false)

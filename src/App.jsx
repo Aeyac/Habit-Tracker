@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/habits" element={<HabitsPage
             habits={habits}
-            addHabit={create}
+            onCreate={create}
             onCheckIn={checkIn}
             onRemove={remove}
             onEdit={edit}
